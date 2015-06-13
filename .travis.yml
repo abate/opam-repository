@@ -42,3 +42,4 @@ matrix:
 notifications:
   email:
     - pietro.abate@pps.univ-paris-diderot.fr
+  on_success: always
