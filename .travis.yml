@@ -40,6 +40,4 @@ matrix:
       env: OCAML_VERSION=4.02.1 OPAM_VERSION=1.2.0
 notifications:
   email:
-    - opam-commits@lists.ocaml.org
-  irc:
-    - "chat.freenode.net#opam"
+    - pietro.abate@pps.univ-paris-diderot.fr
