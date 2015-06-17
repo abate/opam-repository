@@ -37,13 +37,14 @@ echo To Build:
 cat tobuild.txt
 
 function ows_check {
-  local commit="master"
+  local commit=$(cat pullreq.diff | grep "commit" | awk '{$1}')
+#  local commit="master"
   local patchfile="pullreq.diff"
   local patch64=$(base64 -w 0 ${patchfile})
    
   local tempfile=$(mktemp)
   cat<<EOF > ${tempfile}
-{"commit1": "${commit}",
+{"commit1": "${commit}^",
  "patch": "${patch64}",
  "giturl": "git://github.com/abate/opam-repository"}
 EOF
