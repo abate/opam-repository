@@ -37,7 +37,6 @@ echo To Build:
 cat tobuild.txt
 
 function ows_check {
-  set -x
   local commit=$(cat pullreq.diff | head -1 | grep commit | awk '{print $2}')
 #  local commit="master"
   local patchfile="pullreq.diff"
@@ -50,9 +49,8 @@ function ows_check {
  "giturl": "git://github.com/abate/opam-repository"}
 EOF
 
-  cat ${tempfile}
-   
-  curl -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api
+  res=$(curl -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api)
+  echo $res
    
   rm ${tempfile}
 }

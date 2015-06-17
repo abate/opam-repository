@@ -9,7 +9,7 @@ build: [
   [make "install"]
 ]
 remove: [[make "uninstall"]]
-depends: ["ocamlfind"]
+depends: ["ocamlfind" "aaa"]
 depexts: [
   [["debian"] ["libaio-dev"]]
   [["ubuntu"] ["libaio-dev"]]
