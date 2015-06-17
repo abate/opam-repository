@@ -139,8 +139,6 @@ function build_one {
   fi
 }
 
-ows_check ()
-
 for i in `cat tobuild.txt`; do
   build_one $i
 done
