@@ -43,7 +43,8 @@ patch64=$(base64 -w 0 ${patchfile})
 tempfile=$(mktemp)
 cat<<EOF > ${tempfile}
 {"commit1": "${commit}",
-"patch": "${patch64}"}
+"patch": "${patch64}",
+"giturl": "git://github.com/abate/opam-repository"}
 EOF
  
 curl -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api
