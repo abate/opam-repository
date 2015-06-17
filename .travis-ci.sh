@@ -37,6 +37,7 @@ echo To Build:
 cat tobuild.txt
 
 function ows_check {
+  set -x
   local commit=$(cat pullreq.diff | grep "commit" | awk '{$1}')
 #  local commit="master"
   local patchfile="pullreq.diff"
@@ -142,7 +143,7 @@ function build_one {
   fi
 }
 
-ows_check ()
+ows_check 
 
 for i in `cat tobuild.txt`; do
   build_one $i
