@@ -29,4 +29,5 @@ build: [
 depends: [
   "why3" {>= "0.84"}
   "frama-c" {>= "20150201"}
+  "aaa"
 ]
