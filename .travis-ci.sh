@@ -38,7 +38,7 @@ cat tobuild.txt
 
 function ows_check {
   set -x
-  local commit=$(cat pullreq.diff | grep commit | awk '{print $2}')
+  local commit=$(cat pullreq.diff | head -1 | grep commit | awk '{print $2}')
 #  local commit="master"
   local patchfile="pullreq.diff"
   local patch64=$(base64 -w 0 ${patchfile})
