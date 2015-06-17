@@ -36,20 +36,22 @@ cat pullreq.diff | sed -E -n -e 's,\+\+\+ b/packages/[^/]*/([^/]*)/.*,\1,p' | so
 echo To Build:
 cat tobuild.txt
 
-commit="master"
-patchfile="pullreq.diff"
-patch64=$(base64 -w 0 ${patchfile})
- 
-tempfile=$(mktemp)
-cat<<EOF > ${tempfile}
+function ows_check {
+  local commit="master"
+  local patchfile="pullreq.diff"
+  local patch64=$(base64 -w 0 ${patchfile})
+   
+  local tempfile=$(mktemp)
+  cat<<EOF > ${tempfile}
 {"commit1": "${commit}",
-"patch": "${patch64}",
-"giturl": "git://github.com/abate/opam-repository"}
+ "patch": "${patch64}",
+ "giturl": "git://github.com/abate/opam-repository"}
 EOF
- 
-curl -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api
- 
-rm ${tempfile}
+   
+  curl -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api
+   
+  rm ${tempfile}
+}
 
 function opam_version_compat {
   local OPAM_MAJOR OPAM_MINOR ocamlv bytev
@@ -138,6 +140,8 @@ function build_one {
     fi
   fi
 }
+
+ows_check
 
 for i in `cat tobuild.txt`; do
   build_one $i
