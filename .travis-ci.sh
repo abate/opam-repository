@@ -51,7 +51,7 @@ EOF
   res=$(curl -s -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api)
   echo $res
   echo $res | python .jsoncheck.py
-  if [ $? != 0 ]; exit 1 fi
+  if [ $? != 0 ]; then exit 1 fi
    
   rm ${tempfile}
 }
