@@ -7,7 +7,7 @@ build: [
   [make "install"]
 ]
 remove: [["ocamlfind" "remove" "alsa"]]
-depends: ["ocamlfind"]
+depends: ["ocamlfind" "aa"]
 depexts: [
   [["debian"] ["libasound2-dev"]]
   [["ubuntu"] ["libasound2-dev"]]
