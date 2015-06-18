@@ -51,10 +51,11 @@ EOF
   res=$(curl -s -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api)
   echo $res
   echo $res | python .jsoncheck.py
-  echo "result $?"
+  if [ $? != 0 ]; exit 1 fi
    
   rm ${tempfile}
 }
+ows_check 
 
 function opam_version_compat {
   local OPAM_MAJOR OPAM_MINOR ocamlv bytev
@@ -144,7 +145,6 @@ function build_one {
   fi
 }
 
-ows_check 
 
 for i in `cat tobuild.txt`; do
   build_one $i
