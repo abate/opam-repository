@@ -48,7 +48,9 @@ function ows_check {
  "giturl": "git://github.com/abate/opam-repository"}
 EOF
 
-  curl -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api | python .jsoncheck.py
+  res=$(curl -s -H "Content-Type: application/json" --data @${tempfile} http://ows.irill.org/compare/api)
+  echo $res
+  echo $res | python .jsoncheck.py
   echo "result $?"
    
   rm ${tempfile}
