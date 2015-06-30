@@ -9,6 +9,7 @@ remove: ["ocamlfind" "remove" "alberto"]
 depends: [
   "ocamlfind"
   "ocplib-endian"
+  "aaa"
 ]
 available: [ocaml-version >= "4.01" & ocaml-version < "4.02"]
 
